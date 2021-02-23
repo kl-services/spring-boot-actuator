@@ -27,7 +27,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(Integer id) {
         jmsTextMessageService.sendTextMessage("Fetching Product ID: " + id );
-        return productRepository.findOne(id);
+        //TODO fix the following to properly handle optionals!!!
+        return productRepository.findById(id).orElseThrow();
     }
 
     @Override
